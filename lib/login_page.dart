@@ -17,11 +17,12 @@ class _LoginPageState extends State<LoginPage> {
   TextEditingController password = new TextEditingController();
   String masg = '';
   Future<List> _logins() async {
-    final response = await http
-        .post("http://10.0.2.2/IRepair2/flutter/loginpengguna.php", body: {
-      "username": usernme.text,
-      "password": password.text,
-    });
+    final response = await http.post(
+        "http://bengkelirepair.masuk.id/flutter/loginpengguna.php",
+        body: {
+          "username": usernme.text,
+          "password": password.text,
+        });
     var datausers = json.decode(response.body);
 
     if (datausers.length == 0) {
@@ -54,7 +55,7 @@ class _LoginPageState extends State<LoginPage> {
             child: Column(
               children: <Widget>[
                 SizedBox(
-                  height: 100,
+                  height: 90,
                   child: Image(image: AssetImage('Logo_I-Repair.jpeg')),
                 ),
                 SizedBox(height: 50),
@@ -84,7 +85,7 @@ class _LoginPageState extends State<LoginPage> {
                       border: new OutlineInputBorder(
                           borderRadius: BorderRadius.circular(20))),
                 ),
-                SizedBox(height: 170),
+                SizedBox(height: 140),
                 new RaisedButton(
                   child: Text("Login"),
                   color: Colors.orange,
@@ -99,29 +100,29 @@ class _LoginPageState extends State<LoginPage> {
               ],
             ),
           ),
-          SizedBox(height: 30),
+          SizedBox(height: 10),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               Text("Belum punya akun?",
-                  style: TextStyle(fontSize: 15, color: Colors.black)),
+                  style: TextStyle(fontSize: 13, color: Colors.black)),
               ButtonTheme(
                   child: TextButton(
                 onPressed: () {
                   Navigator.pushReplacementNamed(context, 'daftar-page');
                 },
                 child: Text("Daftar",
-                    style: TextStyle(fontSize: 15, color: Colors.blue)),
+                    style: TextStyle(fontSize: 13, color: Colors.blue)),
               )),
-              Text("|    Mekanik Login",
-                  style: TextStyle(fontSize: 15, color: Colors.black)),
+              Text("Mekanik Login",
+                  style: TextStyle(fontSize: 13, color: Colors.black)),
               ButtonTheme(
                   child: TextButton(
                 onPressed: () {
                   Navigator.pushReplacementNamed(context, 'loginmekanik-page');
                 },
                 child: Text("Disini",
-                    style: TextStyle(fontSize: 15, color: Colors.blue)),
+                    style: TextStyle(fontSize: 13, color: Colors.blue)),
               )),
             ],
           )

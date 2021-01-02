@@ -13,8 +13,8 @@ class MekanikSparepartPage extends StatefulWidget {
 
 class _MekanikSparepartPageState extends State<MekanikSparepartPage> {
   Future<List> getData() async {
-    final response =
-        await http.get("http://10.0.2.2/IRepair2/flutter/getsparepart.php");
+    final response = await http
+        .get("http://bengkelirepair.masuk.id/flutter/getsparepart.php");
     return json.decode(response.body);
   }
 

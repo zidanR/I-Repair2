@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/home_page.dart';
+import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:http/http.dart' as http;
 import 'editdata.dart';
 // import 'package:flutter_app/Pelanggan/service_page.dart';
@@ -15,7 +16,7 @@ class Detail extends StatefulWidget {
 
 class _DetailState extends State<Detail> {
   void deleteData() {
-    var url = "http://10.0.2.2/IRepair2/flutter/hapusdataservice.php";
+    var url = "http://bengkelirepair.masuk.id/flutter/hapusdataservice.php";
     http.post(url, body: {'id': widget.list[widget.index]['id_servis']});
   }
 
@@ -37,10 +38,14 @@ class _DetailState extends State<Detail> {
             ));
           },
         ),
-        new RaisedButton(
-          child: new Text("BATAL", style: new TextStyle(color: Colors.black)),
-          color: Colors.green,
-          onPressed: () => Navigator.pop(context),
+        Padding(
+          padding: const EdgeInsets.all(10),
+          child: new RaisedButton(
+            padding: const EdgeInsets.all(10),
+            child: new Text("BATAL", style: new TextStyle(color: Colors.black)),
+            color: Colors.green,
+            onPressed: () => Navigator.pop(context),
+          ),
         ),
       ],
     );
@@ -91,39 +96,54 @@ class _DetailState extends State<Detail> {
                 new Padding(
                   padding: const EdgeInsets.only(top: 30.0),
                 ),
-                new Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: <Widget>[
-                    new RaisedButton(
-                      child: new Text("EDIT"),
-                      color: Colors.green,
-                      onPressed: () => Navigator.of(context)
-                          .pushReplacement(new MaterialPageRoute(
-                        builder: (BuildContext context) => new EditData(
-                          list: widget.list,
-                          index: widget.index,
-                        ),
-                      )),
-                    ),
-                    new RaisedButton(
-                      child: new Text("HAPUS"),
-                      color: Colors.red,
-                      onPressed: () => confirm(),
-                    ),
-                    OutlineButton(
-                      padding: EdgeInsets.symmetric(horizontal: 50),
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(0)),
-                      onPressed: () {
-                        Navigator.pushReplacementNamed(context, 'home-page');
-                      },
-                      child: Text("Batal",
-                          style: TextStyle(
-                              fontSize: 14,
-                              letterSpacing: 2.2,
-                              color: Colors.black)),
-                    ),
-                  ],
+                RatingBarIndicator(
+                  rating: double.parse(
+                      widget.list[widget.index]['Rating'].toString()),
+                  itemBuilder: (context, index) => Icon(
+                    Icons.star,
+                    color: Colors.amber,
+                  ),
+                  itemCount: 5,
+                  itemSize: 20.0,
+                  direction: Axis.horizontal,
+                ),
+                new Padding(padding: new EdgeInsets.only(top: 20)),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 0),
+                  child: new Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: <Widget>[
+                      new RaisedButton(
+                        child: new Text("EDIT"),
+                        color: Colors.green,
+                        onPressed: () => Navigator.of(context)
+                            .pushReplacement(new MaterialPageRoute(
+                          builder: (BuildContext context) => new EditData(
+                            list: widget.list,
+                            index: widget.index,
+                          ),
+                        )),
+                      ),
+                      new RaisedButton(
+                        child: new Text("HAPUS"),
+                        color: Colors.red,
+                        onPressed: () => confirm(),
+                      ),
+                      OutlineButton(
+                        padding: EdgeInsets.symmetric(horizontal: 50),
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(0)),
+                        onPressed: () {
+                          Navigator.pushReplacementNamed(context, 'home-page');
+                        },
+                        child: Text("Batal",
+                            style: TextStyle(
+                                fontSize: 14,
+                                letterSpacing: 0,
+                                color: Colors.black)),
+                      ),
+                    ],
+                  ),
                 )
               ],
             ),

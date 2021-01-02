@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/Mekanik/editdatas.dart';
+import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
 // ignore: must_be_immutable
 class Details extends StatefulWidget {
@@ -44,6 +45,18 @@ class _DetailsState extends State<Details> {
                   "Tanggal : ${widget.list[widget.index]['tanggal']}",
                   style: new TextStyle(fontSize: 18.0),
                 ),
+                RatingBarIndicator(
+                  rating: double.parse(
+                      widget.list[widget.index]['Rating'].toString()),
+                  itemBuilder: (context, index) => Icon(
+                    Icons.star,
+                    color: Colors.amber,
+                  ),
+                  itemCount: 5,
+                  itemSize: 20.0,
+                  direction: Axis.horizontal,
+                ),
+                new Padding(padding: new EdgeInsets.only(top: 20)),
                 new Padding(
                   padding: const EdgeInsets.only(top: 30.0),
                 ),

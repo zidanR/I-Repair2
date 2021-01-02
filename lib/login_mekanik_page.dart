@@ -18,7 +18,7 @@ class _LoginMekanikPageState extends State<LoginMekanikPage> {
   String msg = '';
   Future<List> _login() async {
     final response = await http
-        .post("http://10.0.2.2/IRepair2/flutter/loginmekanik.php", body: {
+        .post("http://bengkelirepair.masuk.id/flutter/loginmekanik.php", body: {
       "usernames": user.text,
       "passwords": pass.text,
     });
@@ -54,7 +54,7 @@ class _LoginMekanikPageState extends State<LoginMekanikPage> {
             child: Column(
               children: <Widget>[
                 SizedBox(
-                  height: 100,
+                  height: 80,
                   child: Image(image: AssetImage('Logo_I-Repair.jpeg')),
                 ),
                 SizedBox(height: 50),
@@ -92,7 +92,7 @@ class _LoginMekanikPageState extends State<LoginMekanikPage> {
                   children: <Widget>[
                     // Text("Remember Me",
                     //     style: TextStyle(fontSize: 15, color: Colors.black)),
-                    SizedBox(width: 200),
+                    SizedBox(width: 00),
                     // ButtonTheme(
                     //   padding: EdgeInsets.all(20),
                     //   child: TextButton(
@@ -105,7 +105,7 @@ class _LoginMekanikPageState extends State<LoginMekanikPage> {
                     // ),
                   ],
                 ),
-                SizedBox(height: 120),
+                SizedBox(height: 70),
                 ButtonTheme(
                   child: RaisedButton(
                     child: Text("Login"),

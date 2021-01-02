@@ -18,7 +18,7 @@ class _EditDatasState extends State<EditDatas> {
   TextEditingController zz4;
 
   void editData() {
-    var url = "http://10.0.2.2/IRepair2/flutter/editdataservice.php";
+    var url = "http://bengkelirepair.masuk.id/flutter/editdataservice.php";
 
     http.post(url, body: {
       "id": widget.list[widget.index]['id_servis'],

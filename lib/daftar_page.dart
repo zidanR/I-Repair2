@@ -17,13 +17,13 @@ class _DaftarPageState extends State<DaftarPage> {
   TextEditingController controllertelepon = new TextEditingController();
 
   void addData() {
-    var url = "http://10.0.2.2/IRepair2/flutter/daftarpengguna.php";
+    var url = "http://bengkelirepair.masuk.id/flutter/daftarpengguna.php";
 
     http.post(url, body: {
       "nama": controllernama.text,
       "username": controllerusername.text,
-      "passwords": controlleremail.text,
-      "email": controllerpassword.text,
+      "passwords": controllerpassword.text,
+      "email": controlleremail.text,
       "alamat": controlleralamat.text,
       "telepon": controllertelepon.text
     });

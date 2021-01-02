@@ -16,7 +16,7 @@ class MekanikServicePage extends StatefulWidget {
 class _MekanikServicePageState extends State<MekanikServicePage> {
   Future<List> getData() async {
     final response =
-        await http.get("http://10.0.2.2/IRepair2/flutter/getservice.php");
+        await http.get("http://bengkelirepair.masuk.id/flutter/getservice.php");
     return json.decode(response.body);
   }
 

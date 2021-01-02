@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:http/http.dart' as http;
 
 class EditData extends StatefulWidget {
@@ -16,9 +17,10 @@ class _EditDataState extends State<EditData> {
   TextEditingController zz2;
   TextEditingController zz3;
   TextEditingController zz4;
+  var zz5;
 
   void editData() {
-    var url = "http://10.0.2.2/IRepair2/flutter/editdataservice.php";
+    var url = "http://bengkelirepair.masuk.id/flutter/editdataservice.php";
 
     http.post(url, body: {
       "id": widget.list[widget.index]['id_servis'],
@@ -26,6 +28,7 @@ class _EditDataState extends State<EditData> {
       "zz2": zz2.text,
       "zz3": zz3.text,
       "zz4": zz4.text,
+      "zz5": zz5,
     });
   }
 
@@ -100,7 +103,23 @@ class _EditDataState extends State<EditData> {
           new Padding(
             padding: new EdgeInsets.only(top: 20),
           ),
-          SizedBox(height: 50),
+          SizedBox(height: 20),
+          RatingBar.builder(
+            initialRating: 0,
+            minRating: 1,
+            direction: Axis.horizontal,
+            allowHalfRating: false,
+            itemCount: 5,
+            itemPadding: EdgeInsets.symmetric(horizontal: 2.0),
+            itemBuilder: (context, _) => Icon(
+              Icons.star,
+              color: Colors.amber,
+            ),
+            onRatingUpdate: (rating) {
+              zz5 = rating.toString();
+            },
+          ),
+          new Padding(padding: new EdgeInsets.only(top: 20)),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -158,7 +177,7 @@ class Head extends StatelessWidget {
                 child: Image(image: AssetImage('Logo_I-Repair.jpeg')),
               ),
               SizedBox(height: 30),
-              Text("Form Pemesanan Service",
+              Text("Form Edit Service",
                   style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 24,

@@ -19,7 +19,8 @@ class _DaftarServicePageState extends State<DaftarServicePage> {
   TextEditingController controllertelepon = new TextEditingController();
 
   void addData() {
-    var url = "http://10.0.2.2/IRepair2/flutter/daftarservicepengguna.php";
+    var url =
+        "http://bengkelirepair.masuk.id/flutter/daftarservicepengguna.php";
 
     http.post(url, body: {
       "zz1": zz1.text,
@@ -88,7 +89,7 @@ class _DaftarServicePageState extends State<DaftarServicePage> {
                       initialDate:
                           _dateTime == null ? DateTime.now() : _dateTime,
                       firstDate: DateTime(2020),
-                      lastDate: DateTime(2021))
+                      lastDate: DateTime(2025))
                   .then((date) {
                 setState(() {
                   _dateTime = date;

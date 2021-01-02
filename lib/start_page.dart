@@ -25,7 +25,7 @@ class _StartPageState extends State<StartPage> {
                   height: 100,
                   child: Image(image: AssetImage('Logo_I-Repair.jpeg')),
                 ),
-                SizedBox(height: 300),
+                SizedBox(height: 200),
                 ButtonTheme(
                     padding: EdgeInsets.all(8.0),
                     buttonColor: Colors.lightBlue,

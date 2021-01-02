@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/Mekanik/main_drawer.dart';
 
-import '../login_mekanik_page.dart';
+// import '../login_mekanik_page.dart';
 
 class MekanikHomePage extends StatefulWidget {
   MekanikHomePage({this.usernames});
@@ -51,14 +51,14 @@ class Head extends StatelessWidget {
               Text("Selamat Datang Mekanik",
                   style: TextStyle(
                       fontWeight: FontWeight.bold,
-                      fontSize: 30,
+                      fontSize: 20,
                       color: Colors.black)),
               SizedBox(height: 0),
-              Text("$usernames",
-                  style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 30,
-                      color: Colors.black)),
+              // Text("$usernames",
+              //     style: TextStyle(
+              //         fontWeight: FontWeight.bold,
+              //         fontSize: 30,
+              //         color: Colors.black)),
             ],
           ),
         ),

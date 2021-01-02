@@ -107,7 +107,7 @@ class _ProfilPageState extends State<ProfilPage> {
                       Navigator.pushReplacementNamed(context, 'login-page');
                     },
                     color: Colors.green,
-                    padding: EdgeInsets.symmetric(horizontal: 50),
+                    padding: EdgeInsets.symmetric(horizontal: 25),
                     elevation: 2,
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(20)),
