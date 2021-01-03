@@ -29,7 +29,7 @@ class MainDrawer extends StatelessWidget {
                       fontWeight: FontWeight.w800,
                     )),
                 SizedBox(height: 10),
-                Text('Mekanik',
+                Text('Mechanic',
                     style: TextStyle(
                       fontSize: 22,
                       fontWeight: FontWeight.w800,
@@ -92,7 +92,7 @@ class MainDrawer extends StatelessWidget {
               Icons.logout,
               color: Colors.black,
             ),
-            title: Text('Keluar')),
+            title: Text('Out')),
       ],
     );
   }

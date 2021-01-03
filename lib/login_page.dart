@@ -104,14 +104,14 @@ class _LoginPageState extends State<LoginPage> {
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              Text("Belum punya akun?",
+              Text("Dont' Have Account?",
                   style: TextStyle(fontSize: 13, color: Colors.black)),
               ButtonTheme(
                   child: TextButton(
                 onPressed: () {
                   Navigator.pushReplacementNamed(context, 'daftar-page');
                 },
-                child: Text("Daftar",
+                child: Text("Register",
                     style: TextStyle(fontSize: 13, color: Colors.blue)),
               )),
               Text("Mekanik Login",
@@ -121,7 +121,7 @@ class _LoginPageState extends State<LoginPage> {
                 onPressed: () {
                   Navigator.pushReplacementNamed(context, 'loginmekanik-page');
                 },
-                child: Text("Disini",
+                child: Text("Here",
                     style: TextStyle(fontSize: 13, color: Colors.blue)),
               )),
             ],

@@ -26,7 +26,7 @@ class _LoginMekanikPageState extends State<LoginMekanikPage> {
 
     if (datauser.length == 0) {
       setState(() {
-        msg = "User name atau password salah";
+        msg = "User name or password Invalid";
       });
     } else {
       if (datauser[0]['level'] == '3') {
@@ -58,7 +58,7 @@ class _LoginMekanikPageState extends State<LoginMekanikPage> {
                   child: Image(image: AssetImage('Logo_I-Repair.jpeg')),
                 ),
                 SizedBox(height: 50),
-                Text("LOGIN MEKANIK",
+                Text("LOGIN MECHANIC",
                     style: TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 24,
@@ -126,14 +126,14 @@ class _LoginMekanikPageState extends State<LoginMekanikPage> {
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              Text("Pengguna Login",
+              Text("User Login",
                   style: TextStyle(fontSize: 15, color: Colors.black)),
               ButtonTheme(
                   child: TextButton(
                 onPressed: () {
                   Navigator.pushReplacementNamed(context, 'login-page');
                 },
-                child: Text("Disini",
+                child: Text("Here",
                     style: TextStyle(fontSize: 15, color: Colors.blue)),
               )),
             ],

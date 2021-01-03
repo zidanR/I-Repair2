@@ -69,11 +69,11 @@ class _EditProfilPageState extends State<EditProfilPage> {
               SizedBox(
                 height: 35,
               ),
-              buildTextField("Nama", "$username", false),
+              buildTextField("Name", "$username", false),
               buildTextField("User Name", "$username", false),
               buildTextField("E-mail", "$username@gmail.com", false),
               buildTextField("Password", "12345678", true),
-              buildTextField("Alamat", "Spanjang Sidoarjo", false),
+              buildTextField("Addres", "Spanjang Sidoarjo", false),
               SizedBox(
                 height: 35,
               ),
@@ -90,7 +90,7 @@ class _EditProfilPageState extends State<EditProfilPage> {
                     child: Text("CANCEL",
                         style: TextStyle(
                             fontSize: 14,
-                            letterSpacing: 2.2,
+                            letterSpacing: 0.2,
                             color: Colors.black)),
                   ),
                   RaisedButton(
@@ -106,7 +106,7 @@ class _EditProfilPageState extends State<EditProfilPage> {
                       "SAVE",
                       style: TextStyle(
                           fontSize: 14,
-                          letterSpacing: 2.2,
+                          letterSpacing: 0.2,
                           color: Colors.white),
                     ),
                   )

@@ -60,8 +60,8 @@ class _EditDataState extends State<EditData> {
           TextFormField(
             controller: zz1,
             decoration: InputDecoration(
-                hintText: "Nama",
-                labelText: "Nama",
+                hintText: "Name",
+                labelText: "Name",
                 border: new OutlineInputBorder(
                     borderRadius: BorderRadius.circular(20))),
           ),
@@ -71,8 +71,8 @@ class _EditDataState extends State<EditData> {
           TextFormField(
             controller: zz2,
             decoration: InputDecoration(
-                hintText: "Jenis Motor",
-                labelText: "Jenis Motor",
+                hintText: "Motorcycle",
+                labelText: "Motorcycle",
                 border: new OutlineInputBorder(
                     borderRadius: BorderRadius.circular(20))),
           ),
@@ -83,8 +83,8 @@ class _EditDataState extends State<EditData> {
             controller: zz3,
             maxLines: 4,
             decoration: InputDecoration(
-                hintText: "Keluhan",
-                labelText: "Keluhan",
+                hintText: "Problems",
+                labelText: "Problems",
                 border: new OutlineInputBorder(
                     borderRadius: BorderRadius.circular(20))),
           ),
@@ -95,8 +95,8 @@ class _EditDataState extends State<EditData> {
             controller: zz4,
             maxLines: 1,
             decoration: InputDecoration(
-                hintText: "(TTTT-BB-HH)",
-                labelText: "Tanggal Service (TTTT-BB-HH)",
+                hintText: "(YYYY-MM-DD)",
+                labelText: "Service Date (YYYY-MM-DD)",
                 border: new OutlineInputBorder(
                     borderRadius: BorderRadius.circular(20))),
           ),
@@ -130,7 +130,7 @@ class _EditDataState extends State<EditData> {
                 onPressed: () {
                   Navigator.pushReplacementNamed(context, 'home-page');
                 },
-                child: Text("Batal",
+                child: Text("Cencel",
                     style: TextStyle(
                         fontSize: 14, letterSpacing: 2.2, color: Colors.black)),
               ),
@@ -148,7 +148,7 @@ class _EditDataState extends State<EditData> {
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(20)),
                 child: Text(
-                  "Simpan",
+                  "Save",
                   style: TextStyle(
                       fontSize: 14, letterSpacing: 2.2, color: Colors.white),
                 ),
@@ -186,7 +186,7 @@ class Head extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
-                  Text("Berikut data yang dibutuhkan ketika service",
+                  Text("Data Service",
                       style: TextStyle(fontSize: 15, color: Colors.black)),
                 ],
               ),

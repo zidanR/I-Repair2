@@ -47,8 +47,8 @@ class _DaftarServicePageState extends State<DaftarServicePage> {
           TextFormField(
             controller: zz1,
             decoration: InputDecoration(
-                hintText: "Nama",
-                labelText: "Nama",
+                hintText: "Name",
+                labelText: "Name",
                 border: new OutlineInputBorder(
                     borderRadius: BorderRadius.circular(20))),
           ),
@@ -58,8 +58,8 @@ class _DaftarServicePageState extends State<DaftarServicePage> {
           TextFormField(
             controller: zz2,
             decoration: InputDecoration(
-                hintText: "Jenis Motor",
-                labelText: "Jenis Motor",
+                hintText: "Motorcycle",
+                labelText: "Motorcycle",
                 border: new OutlineInputBorder(
                     borderRadius: BorderRadius.circular(20))),
           ),
@@ -70,8 +70,8 @@ class _DaftarServicePageState extends State<DaftarServicePage> {
             controller: zz3,
             maxLines: 4,
             decoration: InputDecoration(
-                hintText: "Keluhan",
-                labelText: "Keluhan",
+                hintText: "Problems",
+                labelText: "Problems",
                 border: new OutlineInputBorder(
                     borderRadius: BorderRadius.circular(20))),
           ),
@@ -79,10 +79,10 @@ class _DaftarServicePageState extends State<DaftarServicePage> {
             padding: new EdgeInsets.only(top: 20),
           ),
           Text(_dateTime == null
-              ? '   Belum memilih Tanggal Service'
+              ? '   Havent Choose Date!'
               : _dateTime.toString()),
           RaisedButton(
-            child: Text('Pilih Tanggal'),
+            child: Text('Choose date'),
             onPressed: () {
               showDatePicker(
                       context: context,
@@ -104,8 +104,8 @@ class _DaftarServicePageState extends State<DaftarServicePage> {
             controller: zz4,
             maxLines: 1,
             decoration: InputDecoration(
-                hintText: "(TTTT-BB-HH)",
-                labelText: "Masukkan Tanggal Sesuai Dengan Pilihan Diatas",
+                hintText: "(YYYY-MM-DD)",
+                labelText: "Input Date",
                 border: new OutlineInputBorder(
                     borderRadius: BorderRadius.circular(20))),
           ),
@@ -123,7 +123,7 @@ class _DaftarServicePageState extends State<DaftarServicePage> {
                 onPressed: () {
                   Navigator.pushReplacementNamed(context, 'home-page');
                 },
-                child: Text("Batal",
+                child: Text("Cencel",
                     style: TextStyle(
                         fontSize: 14, letterSpacing: 2.2, color: Colors.black)),
               ),
@@ -138,7 +138,7 @@ class _DaftarServicePageState extends State<DaftarServicePage> {
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(20)),
                 child: Text(
-                  "Simpan",
+                  "Save",
                   style: TextStyle(
                       fontSize: 14, letterSpacing: 2.2, color: Colors.white),
                 ),
@@ -167,7 +167,7 @@ class Head extends StatelessWidget {
                 child: Image(image: AssetImage('Logo_I-Repair.jpeg')),
               ),
               SizedBox(height: 30),
-              Text("Form Pemesanan Service",
+              Text("Form Service Order",
                   style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 24,
@@ -176,7 +176,7 @@ class Head extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
-                  Text("Isi data berikut ini sebelum melakukan service",
+                  Text("Enter Data Before Service",
                       style: TextStyle(fontSize: 15, color: Colors.black)),
                 ],
               ),

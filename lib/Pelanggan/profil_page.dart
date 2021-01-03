@@ -12,7 +12,7 @@ class _ProfilPageState extends State<ProfilPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Profil Saya'),
+        title: Text('My Profil'),
         backgroundColor: Colors.orange,
         actions: <Widget>[],
       ),
@@ -112,7 +112,7 @@ class _ProfilPageState extends State<ProfilPage> {
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(20)),
                     child: Text(
-                      "Keluar",
+                      "Out",
                       style: TextStyle(
                           fontSize: 14,
                           letterSpacing: 2.2,

@@ -33,7 +33,7 @@ class _StartPageState extends State<StartPage> {
                       onPressed: () {
                         Navigator.pushReplacementNamed(context, 'login-page');
                       },
-                      child: Text("Masuk"),
+                      child: Text("Start"),
                     )),
               ],
             ),

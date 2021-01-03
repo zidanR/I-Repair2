@@ -48,7 +48,7 @@ class Head extends StatelessWidget {
                 child: Image(image: AssetImage('Logo_I-Repair.jpeg')),
               ),
               SizedBox(height: 20),
-              Text("Selamat Datang Mekanik",
+              Text("Welcome Mekanik",
                   style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 20,

@@ -55,7 +55,7 @@ class _HomePageState extends State<HomePage> {
           BottomNavigationBarItem(
               icon: Icon(Icons.person),
               // ignore: deprecated_member_use
-              title: Text('Profil'),
+              title: Text('Profile'),
               backgroundColor: Colors.red),
         ],
       ),

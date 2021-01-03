@@ -81,11 +81,11 @@ class _MekanikProfilPageState extends State<MekanikProfilPage> {
               SizedBox(
                 height: 35,
               ),
-              buildTextField("Nama", "Zulfikar Rofi", false),
+              buildTextField("Name", "Zulfikar Rofi", false),
               buildTextField("User Name", "$usernames", false),
               buildTextField("E-mail", "$usernames@gmail.com", false),
               buildTextField("Password", "12345678", true),
-              buildTextField("Alamat", "Spanjang Sidoarjo", false),
+              buildTextField("Addres", "Spanjang Sidoarjo", false),
               SizedBox(
                 height: 35,
               ),

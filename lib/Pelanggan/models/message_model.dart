@@ -20,7 +20,7 @@ List<Message> chats = [
   Message(
     sender: mekanik,
     time: '5:30 PM',
-    text: 'Hey dude! Even dead I\'m the hero. Love you 3000 guys.',
+    text: 'We could surely handle this mess much easily if you were here.',
     unread: true,
   ),
   // Message(
@@ -73,13 +73,13 @@ List<Message> messages = [
   Message(
     sender: mekanik,
     time: '8:31 PM',
-    text: 'Hey dude! Event dead I\'m the hero. Love you 3000 guys.',
+    text: 'We could surely handle this mess much easily if you were here.',
     unread: true,
   ),
   Message(
     sender: pengguna,
     time: '8:30 PM',
-    text: 'We could surely handle this mess much easily if you were here.',
+    text: 'OK I Will Be There',
     unread: true,
   ),
   // Message(

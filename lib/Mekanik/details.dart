@@ -18,9 +18,9 @@ class _DetailsState extends State<Details> {
     return new Scaffold(
       appBar: new AppBar(
           backgroundColor: Colors.red,
-          title: new Text("Detail Service Pelanggan")),
+          title: new Text("Detail Service Customer")),
       body: new Container(
-        height: 270.0,
+        height: 500.0,
         padding: const EdgeInsets.all(20.0),
         child: new Card(
           child: new Center(
@@ -33,16 +33,19 @@ class _DetailsState extends State<Details> {
                   widget.list[widget.index]['nama_akun'],
                   style: new TextStyle(fontSize: 20.0),
                 ),
+                new Padding(padding: new EdgeInsets.only(top: 20)),
                 new Text(
-                  "Jenis Motor : ${widget.list[widget.index]['jenis_motor']}",
+                  "Motorcycle : ${widget.list[widget.index]['jenis_motor']}",
                   style: new TextStyle(fontSize: 18.0),
                 ),
+                new Padding(padding: new EdgeInsets.only(top: 20)),
                 new Text(
-                  "Keluhan : ${widget.list[widget.index]['keluhan']}",
+                  "Problems : ${widget.list[widget.index]['keluhan']}",
                   style: new TextStyle(fontSize: 18.0),
                 ),
+                new Padding(padding: new EdgeInsets.only(top: 20)),
                 new Text(
-                  "Tanggal : ${widget.list[widget.index]['tanggal']}",
+                  "Date : ${widget.list[widget.index]['tanggal']}",
                   style: new TextStyle(fontSize: 18.0),
                 ),
                 RatingBarIndicator(
@@ -75,7 +78,7 @@ class _DetailsState extends State<Details> {
                       )),
                     ),
                     new RaisedButton(
-                      child: new Text("Kembali"),
+                      child: new Text("BACK"),
                       color: Colors.white,
                       onPressed: () {
                         Navigator.pushReplacementNamed(

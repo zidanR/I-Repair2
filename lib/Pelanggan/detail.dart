@@ -23,11 +23,11 @@ class _DetailState extends State<Detail> {
   void confirm() {
     AlertDialog alertDialog = new AlertDialog(
       content: new Text(
-          "Anda yakin untuk menghapus '${widget.list[widget.index]['nama_akun']}'"),
+          "Are you sure wanna delete '${widget.list[widget.index]['nama_akun']}'"),
       actions: <Widget>[
         new RaisedButton(
           child: new Text(
-            "HAPUS!",
+            "DELETE!",
             style: new TextStyle(color: Colors.black),
           ),
           color: Colors.red,
@@ -42,7 +42,8 @@ class _DetailState extends State<Detail> {
           padding: const EdgeInsets.all(10),
           child: new RaisedButton(
             padding: const EdgeInsets.all(10),
-            child: new Text("BATAL", style: new TextStyle(color: Colors.black)),
+            child:
+                new Text("CENCEL", style: new TextStyle(color: Colors.black)),
             color: Colors.green,
             onPressed: () => Navigator.pop(context),
           ),
@@ -76,21 +77,21 @@ class _DetailState extends State<Detail> {
                   padding: new EdgeInsets.only(top: 20),
                 ),
                 new Text(
-                  "Jenis Motor : ${widget.list[widget.index]['jenis_motor']}",
+                  "Motorcycle : ${widget.list[widget.index]['jenis_motor']}",
                   style: new TextStyle(fontSize: 18.0),
                 ),
                 new Padding(
                   padding: new EdgeInsets.only(top: 20),
                 ),
                 new Text(
-                  "Keluhan : ${widget.list[widget.index]['keluhan']}",
+                  "Problems : ${widget.list[widget.index]['keluhan']}",
                   style: new TextStyle(fontSize: 18.0),
                 ),
                 new Padding(
                   padding: new EdgeInsets.only(top: 20),
                 ),
                 new Text(
-                  "Tanggal : ${widget.list[widget.index]['tanggal']}",
+                  "Date : ${widget.list[widget.index]['tanggal']}",
                   style: new TextStyle(fontSize: 18.0),
                 ),
                 new Padding(
@@ -125,18 +126,18 @@ class _DetailState extends State<Detail> {
                         )),
                       ),
                       new RaisedButton(
-                        child: new Text("HAPUS"),
+                        child: new Text("DELETE"),
                         color: Colors.red,
                         onPressed: () => confirm(),
                       ),
                       OutlineButton(
-                        padding: EdgeInsets.symmetric(horizontal: 50),
+                        padding: EdgeInsets.symmetric(horizontal: 20),
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(0)),
                         onPressed: () {
                           Navigator.pushReplacementNamed(context, 'home-page');
                         },
-                        child: Text("Batal",
+                        child: Text("Cencel",
                             style: TextStyle(
                                 fontSize: 14,
                                 letterSpacing: 0,

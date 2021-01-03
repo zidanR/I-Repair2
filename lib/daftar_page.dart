@@ -44,7 +44,7 @@ class _DaftarPageState extends State<DaftarPage> {
                   child: Image(image: AssetImage('Logo_I-Repair.jpeg')),
                 ),
                 SizedBox(height: 40),
-                Text("Daftar Pelanggan",
+                Text("Register Account",
                     style: TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 24,
@@ -53,7 +53,7 @@ class _DaftarPageState extends State<DaftarPage> {
                 TextFormField(
                   controller: controllernama,
                   decoration: InputDecoration(
-                      hintText: "Nama Lengkap", labelText: "Nama lengkap"),
+                      hintText: "Full Name", labelText: "Full Name"),
                 ),
                 new Padding(
                   padding: new EdgeInsets.only(top: 20),
@@ -86,8 +86,8 @@ class _DaftarPageState extends State<DaftarPage> {
                 TextFormField(
                   obscureText: true,
                   decoration: InputDecoration(
-                      hintText: "Ulangi Password",
-                      labelText: "Ulangi Password"),
+                      hintText: "Repeat Password",
+                      labelText: "Repeat Password"),
                 ),
                 new Padding(
                   padding: new EdgeInsets.only(top: 20),
@@ -96,7 +96,7 @@ class _DaftarPageState extends State<DaftarPage> {
                   controller: controlleralamat,
                   maxLines: 3,
                   decoration:
-                      InputDecoration(hintText: "Alamat", labelText: "Alamat"),
+                      InputDecoration(hintText: "Addres", labelText: "Addres"),
                 ),
                 new Padding(
                   padding: new EdgeInsets.only(top: 20),
@@ -104,7 +104,7 @@ class _DaftarPageState extends State<DaftarPage> {
                 TextFormField(
                   controller: controllertelepon,
                   decoration: InputDecoration(
-                      hintText: "Nomor Telepon", labelText: "Nomor Telepon"),
+                      hintText: "Phone Number", labelText: "Phone Number"),
                 ),
                 SizedBox(height: 30),
                 ButtonTheme(
@@ -113,7 +113,7 @@ class _DaftarPageState extends State<DaftarPage> {
                     addData();
                     Navigator.pushReplacementNamed(context, 'login-page');
                   },
-                  child: Text("Daftar"),
+                  child: Text("Register"),
                 )),
               ],
             ),
@@ -121,14 +121,14 @@ class _DaftarPageState extends State<DaftarPage> {
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              Text("Sudah punya akun?   Login",
+              Text("Have Account?  Login",
                   style: TextStyle(fontSize: 15, color: Colors.black)),
               ButtonTheme(
                   child: TextButton(
                 onPressed: () {
                   Navigator.pushReplacementNamed(context, 'login-page');
                 },
-                child: Text("Disini",
+                child: Text("Here",
                     style: TextStyle(fontSize: 15, color: Colors.blue)),
               )),
             ],
