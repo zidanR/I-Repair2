@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/Pelanggan/chat_page.dart';
+// import 'package:flutter_app/Pelanggan/chat_page.dart';
 import 'package:flutter_app/Pelanggan/homes_page.dart';
 import 'package:flutter_app/Pelanggan/profil_page.dart';
 import 'package:flutter_app/Pelanggan/service_page.dart';
+
+import 'Mekanik/mekanik_chat_page.dart';
+
+// import 'Pelanggan/pesan/tampilanpesan.dart';
 
 class HomePage extends StatefulWidget {
   HomePage({this.username});
@@ -17,7 +21,8 @@ class _HomePageState extends State<HomePage> {
   final List<Widget> _children = [
     HomesPage(),
     ServicePage(),
-    ChatPage(),
+    MekanikChatPage(),
+    // TampilanPesan(),
     ProfilPage()
   ];
   void onTappedBar(int index) {

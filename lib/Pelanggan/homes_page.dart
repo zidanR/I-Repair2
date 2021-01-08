@@ -53,7 +53,7 @@ class Head extends StatelessWidget {
                 child: Image(image: AssetImage('Logo_I-Repair.jpeg')),
               ),
               SizedBox(height: 20),
-              Text("Welcome $username",
+              Text("Welcome $usernamesss",
                   style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 30,

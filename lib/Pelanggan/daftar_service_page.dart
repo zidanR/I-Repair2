@@ -21,12 +21,11 @@ class _DaftarServicePageState extends State<DaftarServicePage> {
   void addData() {
     var url =
         "http://bengkelirepair.masuk.id/flutter/daftarservicepengguna.php";
-
     http.post(url, body: {
-      "zz1": zz1.text,
-      "zz2": zz2.text,
-      "zz3": zz3.text,
-      "zz4": zz4.text,
+      "txtakun": zz1.text,
+      "txtjenis": zz2.text,
+      "txtkeluhan": zz3.text,
+      "txttgl": zz4.text,
     });
   }
 
@@ -105,12 +104,24 @@ class _DaftarServicePageState extends State<DaftarServicePage> {
             maxLines: 1,
             decoration: InputDecoration(
                 hintText: "(YYYY-MM-DD)",
-                labelText: "Input Date",
+                labelText: "Input Date (YYYY-MM-DD)",
                 border: new OutlineInputBorder(
                     borderRadius: BorderRadius.circular(20))),
           ),
           new Padding(
             padding: new EdgeInsets.only(top: 20),
+          ),
+          ListTile(
+            title: Text(
+              'Sparepart',
+              style: TextStyle(fontWeight: FontWeight.w600, fontSize: 22.0),
+            ),
+            trailing: IconButton(
+              icon: Icon(Icons.keyboard_arrow_right),
+              onPressed: () {
+                Navigator.pushNamed(context, 'sparepart-page');
+              },
+            ),
           ),
           SizedBox(height: 50),
           Row(

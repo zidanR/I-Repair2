@@ -11,6 +11,12 @@ class EditProfilPage extends StatefulWidget {
 
 class _EditProfilPageState extends State<EditProfilPage> {
   bool showPassword = false;
+  TextEditingController naamaa = new TextEditingController();
+  TextEditingController ussername = new TextEditingController();
+  TextEditingController emmail = new TextEditingController();
+  TextEditingController pasworld = new TextEditingController();
+  TextEditingController adress = new TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -34,13 +40,6 @@ class _EditProfilPageState extends State<EditProfilPage> {
           },
           child: ListView(
             children: [
-              // Text(
-              //   "Profil",
-              //   style: TextStyle(fontSize: 25, fontWeight: FontWeight.w500),
-              // ),
-              // SizedBox(
-              //   height: 15,
-              // ),
               Center(
                 child: Stack(
                   children: [
@@ -69,11 +68,11 @@ class _EditProfilPageState extends State<EditProfilPage> {
               SizedBox(
                 height: 35,
               ),
-              buildTextField("Name", "$username", false),
-              buildTextField("User Name", "$username", false),
-              buildTextField("E-mail", "$username@gmail.com", false),
-              buildTextField("Password", "12345678", true),
-              buildTextField("Addres", "Spanjang Sidoarjo", false),
+              buildTextField("Name", "", false),
+              buildTextField("User Name", "$usernamesss", false),
+              buildTextField("E-mail", "$usernamesss@gmail.com", false),
+              buildTextField("Password", "", true),
+              buildTextField("Addres", "", false),
               SizedBox(
                 height: 35,
               ),

@@ -1,9 +1,11 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'dart:async';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
+import 'package:shared_preferences/shared_preferences.dart';
 
-String usernames = '';
+String usernamess = '';
 
 class LoginMekanikPage extends StatefulWidget {
   LoginMekanikPage({Key key}) : super(key: key);
@@ -16,6 +18,10 @@ class _LoginMekanikPageState extends State<LoginMekanikPage> {
   TextEditingController user = new TextEditingController();
   TextEditingController pass = new TextEditingController();
   String msg = '';
+  String idmekanik;
+  String usernames;
+  String passwords;
+  String level;
   Future<List> _login() async {
     final response = await http
         .post("http://bengkelirepair.masuk.id/flutter/loginmekanik.php", body: {
@@ -29,14 +35,46 @@ class _LoginMekanikPageState extends State<LoginMekanikPage> {
         msg = "User name or password Invalid";
       });
     } else {
+      final SharedPreferences prefs = await SharedPreferences.getInstance();
+      prefs.setString('iduser', datauser[0]['id_user']);
+      prefs.setString('usernames', datauser[0]['usernames']);
+      prefs.setString('passwords', datauser[0]['passwords']);
+      prefs.setString('level', datauser[0]['level']);
       if (datauser[0]['level'] == '3') {
+        SharedPreferences sharedPreferences =
+            await SharedPreferences.getInstance();
+        idmekanik = sharedPreferences.getString('iduser');
+        usernames = sharedPreferences.getString('usernames');
+        passwords = sharedPreferences.getString('passwords');
+        level = sharedPreferences.getString('level');
+        final result = (await FirebaseFirestore.instance
+                .collection('users')
+                .where('id', isEqualTo: idmekanik)
+                .get())
+            .docs;
+        if (result.length == 0) {
+          ///new user
+          FirebaseFirestore.instance
+              .collection('users')
+              .doc(idmekanik.toString())
+              .set({
+            "id": idmekanik,
+            "level": level,
+            "username": usernames,
+            "password": passwords,
+          });
+        } else {
+          ///Old user
+          sharedPreferences.setString("id", result[0]["id"]);
+          sharedPreferences.setString("username", result[0]["username"]);
+        }
         Navigator.pushReplacementNamed(context, 'mekanikhome-page');
       } else if (null) {
         Navigator.pushReplacementNamed(context, 'homes-page');
       }
 
       setState(() {
-        usernames = datauser[0]['usernames'];
+        usernamess = datauser[0]['usernames'];
       });
     }
 

@@ -20,12 +20,12 @@ class _DaftarPageState extends State<DaftarPage> {
     var url = "http://bengkelirepair.masuk.id/flutter/daftarpengguna.php";
 
     http.post(url, body: {
-      "nama": controllernama.text,
-      "username": controllerusername.text,
-      "passwords": controllerpassword.text,
-      "email": controlleremail.text,
-      "alamat": controlleralamat.text,
-      "telepon": controllertelepon.text
+      "txtnama": controllernama.text,
+      "txtpengguna": controllerusername.text,
+      "txtpass": controllerpassword.text,
+      "txtemail": controlleremail.text,
+      "txtalamat": controlleralamat.text,
+      "txtnomer": controllertelepon.text
     });
   }
 

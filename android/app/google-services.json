@@ -1,0 +1,56 @@
+{
+  "project_info": {
+    "project_number": "87813101968",
+    "firebase_url": "https://i-repair-280dc-default-rtdb.firebaseio.com",
+    "project_id": "i-repair-280dc",
+    "storage_bucket": "i-repair-280dc.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:87813101968:android:2bee658ed6a225e46b7b15",
+        "android_client_info": {
+          "package_name": "com.x.y.flutter_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "87813101968-2pat1978smek7jo4eecqtk6s6uup3tu1.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.x.y.flutter_app",
+            "certificate_hash": "d0b24b6aa6b09a71b635a9e0e537a5bf762a2e7e"
+          }
+        },
+        {
+          "client_id": "87813101968-k9tt95e0g1fdhbkamf2p2pce11k1e5r9.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.x.y.flutter_app",
+            "certificate_hash": "cbe2c19f43852de039f9986123d80a57b1554ce7"
+          }
+        },
+        {
+          "client_id": "87813101968-m8nltsr06amspkpk8tll93okh9ucvqmd.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCimtSaS5KU7utQ51EN1MBlAGGeEiyddJM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "87813101968-m8nltsr06amspkpk8tll93okh9ucvqmd.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -12,10 +12,12 @@ class ServicePage extends StatefulWidget {
 }
 
 class _ServicePageState extends State<ServicePage> {
-  Future<List> getData() async {
-    final response =
-        await http.get("http://bengkelirepair.masuk.id/flutter/getservice.php");
-    return json.decode(response.body);
+  Stream<List> getData() async* {
+    while (true) {
+      final response = await http
+          .get("http://bengkelirepair.masuk.id/flutter/getservice.php");
+      yield json.decode(response.body);
+    }
   }
 
   @override
@@ -34,51 +36,71 @@ class _ServicePageState extends State<ServicePage> {
         backgroundColor: Colors.orange,
         child: Icon(Icons.add),
       ),
-      body: new FutureBuilder<List>(
-        future: getData(),
+      body: new StreamBuilder<List>(
+        stream: getData(),
         builder: (context, snapshot) {
-          if (snapshot.hasError) {
-            print(snapshot.error);
+          if (snapshot.data == null) {
+            return Container(
+              child: Center(
+                child: Text('Loading...'),
+              ),
+            );
           }
-          return snapshot.hasData
-              ? new ItemList(
-                  list: snapshot.data,
-                )
-              : new Center(
-                  child: new CircularProgressIndicator(),
+          return ListView.builder(
+              itemCount: snapshot.data.length,
+              itemBuilder: (context, i) {
+                return new Container(
+                  padding: const EdgeInsets.all(10.0),
+                  child: new GestureDetector(
+                    onTap: () => Navigator.of(context)
+                        .pushReplacement(new MaterialPageRoute(
+                            builder: (BuildContext context) => new Detail(
+                                  list: snapshot.data,
+                                  index: i,
+                                ))),
+                    child: new Card(
+                      child: new ListTile(
+                        title: new Text(snapshot.data[i]['nama_akun']),
+                        leading: new Icon(Icons.person),
+                        subtitle: new Text(
+                            "Motorcycle : ${snapshot.data[i]['jenis_motor']}"),
+                      ),
+                    ),
+                  ),
                 );
+              });
         },
       ),
     );
   }
 }
 
-class ItemList extends StatelessWidget {
-  final List list;
-  ItemList({this.list});
-  @override
-  Widget build(BuildContext context) {
-    return new ListView.builder(
-        itemCount: list == null ? 0 : list.length,
-        itemBuilder: (context, i) {
-          return new Container(
-            padding: const EdgeInsets.all(10.0),
-            child: new GestureDetector(
-              onTap: () =>
-                  Navigator.of(context).pushReplacement(new MaterialPageRoute(
-                      builder: (BuildContext context) => new Detail(
-                            list: list,
-                            index: i,
-                          ))),
-              child: new Card(
-                child: new ListTile(
-                  title: new Text(list[i]['nama_akun']),
-                  leading: new Icon(Icons.person),
-                  subtitle: new Text("Motorcycle : ${list[i]['jenis_motor']}"),
-                ),
-              ),
-            ),
-          );
-        });
-  }
-}
+// class ItemList extends StatelessWidget {
+//   final List list;
+//   ItemList({this.list});
+//   @override
+//   Widget build(BuildContext context) {
+//     return new ListView.builder(
+//         itemCount: list == null ? 0 : list.length,
+//         itemBuilder: (context, i) {
+//           return new Container(
+//             padding: const EdgeInsets.all(10.0),
+//             child: new GestureDetector(
+//               onTap: () =>
+//                   Navigator.of(context).pushReplacement(new MaterialPageRoute(
+//                       builder: (BuildContext context) => new Detail(
+//                             list: list,
+//                             index: i,
+//                           ))),
+//               child: new Card(
+//                 child: new ListTile(
+//                   title: new Text(list[i]['nama_akun']),
+//                   leading: new Icon(Icons.person),
+//                   subtitle: new Text("Motorcycle : ${list[i]['jenis_motor']}"),
+//                 ),
+//               ),
+//             ),
+//           );
+//         });
+//   }
+// }

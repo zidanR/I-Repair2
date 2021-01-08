@@ -1,22 +1,19 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-// import 'package:flutter_app/Pelanggan/models/message_model.dart';
-// import 'package:flutter_app/Pelanggan/models/user_model.dart';
 
-class ChatScreen extends StatefulWidget {
-  // final docs;
-  final String idpengguna;
-  ChatScreen({this.idpengguna});
+class MekanikChatScreen extends StatefulWidget {
+  final String idmekanik;
+  MekanikChatScreen({this.idmekanik});
 
   @override
-  _ChatScreenState createState() => _ChatScreenState();
+  _MekanikChatScreenState createState() => _MekanikChatScreenState();
 }
 
-class _ChatScreenState extends State<ChatScreen> {
-  String idpengguna;
+class _MekanikChatScreenState extends State<MekanikChatScreen> {
   String groupChatId;
   String anotherUsername;
+  String idpenggunas;
   String idmekanik;
 
   TextEditingController textEditingController = TextEditingController();
@@ -30,31 +27,24 @@ class _ChatScreenState extends State<ChatScreen> {
   }
 
   getGroupChatId() async {
-    idpengguna = widget.idpengguna;
-    // String anotherUserId = widget.docs['id'];
-    // String _anotherUsername = widget.docs['username'];
+    idmekanik = widget.idmekanik;
     SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
-    idmekanik = sharedPreferences.getString('iduser');
-    print('idmekanik: $idmekanik');
-    print('idpengguna : $idpengguna');
-    if (idmekanik.compareTo(idpengguna) > 0) {
-      groupChatId = '$idmekanik - $idpengguna';
+    idpenggunas = sharedPreferences.getString('idpengguna');
+    print(idpenggunas);
+    if (idpenggunas.compareTo(idmekanik) > 0) {
+      groupChatId = '$idpenggunas - $idmekanik';
     } else {
-      groupChatId = '$idpengguna - $idmekanik';
+      groupChatId = '$idmekanik - $idpenggunas';
     }
     // ignore: deprecated_member_use
     Firestore.instance
         .collection('users')
         // ignore: deprecated_member_use
-        .document(idmekanik)
+        .document(idpenggunas)
         // ignore: deprecated_member_use
         .updateData({'chatting': idmekanik});
     setState(() {});
   }
-  //   setState(() {
-  //     anotherUsername = _anotherUsername;
-  //   });
-  // }
 
   @override
   Widget build(BuildContext context) {
@@ -124,7 +114,7 @@ class _ChatScreenState extends State<ChatScreen> {
                           ),
                         ),
                         Padding(
-                          padding: const EdgeInsets.fromLTRB(10, 10, 10, 12),
+                          padding: const EdgeInsets.fromLTRB(10, 10, 10, 10),
                           child: IconButton(
                             icon: Icon(
                               Icons.send,
@@ -172,8 +162,8 @@ class _ChatScreenState extends State<ChatScreen> {
 
       FirebaseFirestore.instance.runTransaction((transaction) async {
         transaction.set(ref, {
-          "senderId": idmekanik,
-          "anotherUserId": idpengguna,
+          "senderId": idpenggunas,
+          "anotherUserId": idmekanik,
           "timestamp": DateTime.now().millisecondsSinceEpoch.toString(),
           'content': msg,
           "type": 'text',
@@ -187,29 +177,24 @@ class _ChatScreenState extends State<ChatScreen> {
     }
   }
 
-  buildItem(doc) {
+  buildItem(DocumentSnapshot doc) {
     String sendByMe = (doc.data()['senderId']);
     return Padding(
       padding: const EdgeInsets.fromLTRB(12, 5, 12, 5),
       child: Container(
         padding: EdgeInsets.only(
-            // ignore: unrelated_type_equality_checks
-            left: (sendByMe == idmekanik ? 24 : 0),
-            // ignore: unrelated_type_equality_checks
-            right: (sendByMe == idmekanik ? 0 : 24)),
-        // ignore: unrelated_type_equality_checks
-        alignment: (sendByMe == idmekanik
+            left: (sendByMe == idpenggunas ? 24 : 0),
+            right: (sendByMe == idpenggunas ? 0 : 24)),
+        alignment: (sendByMe == idpenggunas
             ? Alignment.centerRight
             : Alignment.centerLeft),
         child: Container(
-          // ignore: unrelated_type_equality_checks
-          margin: sendByMe == idmekanik
+          margin: sendByMe == idpenggunas
               ? EdgeInsets.only(left: 30)
               : EdgeInsets.only(right: 30),
           padding: EdgeInsets.only(top: 12, bottom: 12, left: 20, right: 20),
           decoration: BoxDecoration(
-              // ignore: unrelated_type_equality_checks
-              borderRadius: sendByMe == idmekanik
+              borderRadius: sendByMe == idpenggunas
                   ? BorderRadius.only(
                       topLeft: Radius.circular(23),
                       topRight: Radius.circular(23),
@@ -218,9 +203,9 @@ class _ChatScreenState extends State<ChatScreen> {
                       bottomLeft: Radius.circular(23),
                       topRight: Radius.circular(23),
                       bottomRight: Radius.circular(23)),
-              color:
-                  // ignore: unrelated_type_equality_checks
-                  sendByMe == idmekanik ? Colors.grey[200] : Colors.grey[300]),
+              color: sendByMe == idpenggunas
+                  ? Colors.grey[200]
+                  : Colors.grey[300]),
           child: (doc.data()['type'] == 'text')
               ? Text('${doc.data()['content']}',
                   style: TextStyle(

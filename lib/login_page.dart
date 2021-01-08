@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'dart:async';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
-String username = '';
+String usernamesss = '';
 
 class LoginPage extends StatefulWidget {
   LoginPage({Key key}) : super(key: key);
@@ -14,34 +16,78 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
   TextEditingController usernme = new TextEditingController();
-  TextEditingController password = new TextEditingController();
+  TextEditingController paword = new TextEditingController();
   String masg = '';
+  String idpengguna;
+  String username;
+  String passwords;
+  String level;
   Future<List> _logins() async {
     final response = await http.post(
         "http://bengkelirepair.masuk.id/flutter/loginpengguna.php",
         body: {
           "username": usernme.text,
-          "password": password.text,
+          "password": paword.text,
         });
     var datausers = json.decode(response.body);
 
     if (datausers.length == 0) {
       setState(() {
-        masg = "User name atau password salah";
+        masg = "User name or password wrong";
       });
     } else {
+      final SharedPreferences prefs = await SharedPreferences.getInstance();
+      prefs.setString('idpengguna', datausers[0]['id_pengguna']);
+      prefs.setString('username', datausers[0]['username_pengguna']);
+      prefs.setString('passwords', datausers[0]['password']);
+      prefs.setString('level', datausers[0]['level']);
+
       if (datausers[0]['level'] == '0') {
+        SharedPreferences sharedPreferences =
+            await SharedPreferences.getInstance();
+        idpengguna = sharedPreferences.getString('idpengguna');
+        username = sharedPreferences.getString('username');
+        passwords = sharedPreferences.getString('password');
+        level = sharedPreferences.getString('level');
+        final result = (await FirebaseFirestore.instance
+                .collection('users')
+                .where('id', isEqualTo: idpengguna)
+                .get())
+            .docs;
+
+        if (result.length == 0) {
+          ///new user
+          FirebaseFirestore.instance
+              .collection('users')
+              .doc(idpengguna.toString())
+              .set({
+            "id": idpengguna,
+            "level": level,
+            "username": username,
+            "password": passwords,
+          });
+        } else {
+          ///Old user
+          sharedPreferences.setString("id", result[0]["id"]);
+          sharedPreferences.setString("username", result[0]["username"]);
+        }
         Navigator.pushReplacementNamed(context, 'home-page');
       } else if (null) {
         Navigator.pushReplacementNamed(context, 'homes-page');
       }
 
+      // Data user firebase
       setState(() {
-        username = datausers[0]['nama_pengguna'];
+        usernamesss = datausers[0]['username_pengguna'];
       });
     }
 
     return datausers;
+  }
+
+  @override
+  void initState() {
+    super.initState();
   }
 
   @override
@@ -77,7 +123,7 @@ class _LoginPageState extends State<LoginPage> {
                   padding: new EdgeInsets.only(top: 20),
                 ),
                 new TextField(
-                  controller: password,
+                  controller: paword,
                   obscureText: true,
                   decoration: InputDecoration(
                       hintText: "Password",

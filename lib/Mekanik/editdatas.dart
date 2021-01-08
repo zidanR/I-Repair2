@@ -12,32 +12,44 @@ class EditDatas extends StatefulWidget {
 }
 
 class _EditDatasState extends State<EditDatas> {
-  TextEditingController zz1;
-  TextEditingController zz2;
-  TextEditingController zz3;
-  TextEditingController zz4;
+  // TextEditingController zz1;
+  // TextEditingController zz2;
+  // TextEditingController zz3;
+  // TextEditingController zz4;
+  TextEditingController zz6;
+  TextEditingController zz7;
+  TextEditingController zz8;
 
   void editData() {
-    var url = "http://bengkelirepair.masuk.id/flutter/editdataservice.php";
+    var url = "http://bengkelirepair.masuk.id/flutter/editdatasservice.php";
 
     http.post(url, body: {
       "id": widget.list[widget.index]['id_servis'],
-      "zz1": zz1.text,
-      "zz2": zz2.text,
-      "zz3": zz3.text,
-      "zz4": zz4.text,
+      // "zz1": zz1.text,
+      // "zz2": zz2.text,
+      // "zz3": zz3.text,
+      // "zz4": zz4.text,
+      "txtsparepart": zz6.text,
+      "status_mekanik": zz7.text,
+      "total_biaya": zz8.text,
     });
   }
 
   @override
   @override
   void initState() {
-    zz1 =
-        new TextEditingController(text: widget.list[widget.index]['nama_akun']);
-    zz2 = new TextEditingController(
-        text: widget.list[widget.index]['jenis_motor']);
-    zz3 = new TextEditingController(text: widget.list[widget.index]['keluhan']);
-    zz4 = new TextEditingController(text: widget.list[widget.index]['tanggal']);
+    // zz1 =
+    //     new TextEditingController(text: widget.list[widget.index]['nama_akun']);
+    // zz2 = new TextEditingController(
+    //     text: widget.list[widget.index]['jenis_motor']);
+    // zz3 = new TextEditingController(text: widget.list[widget.index]['keluhan']);
+    zz6 = new TextEditingController(
+        text: widget.list[widget.index]['pergantian_sparepart']);
+    // zz4 = new TextEditingController(text: widget.list[widget.index]['tanggal']);
+    zz7 = new TextEditingController(
+        text: widget.list[widget.index]['status_mekanik']);
+    zz8 = new TextEditingController(
+        text: widget.list[widget.index]['total_biaya']);
     super.initState();
   }
 
@@ -54,11 +66,57 @@ class _EditDatasState extends State<EditDatas> {
           ),
           Head(),
           Form(),
+          // TextFormField(
+          //   controller: zz1,
+          //   decoration: InputDecoration(
+          //       hintText: "Name",
+          //       labelText: "Name",
+          //       border: new OutlineInputBorder(
+          //           borderRadius: BorderRadius.circular(20))),
+          // ),
+          // new Padding(
+          //   padding: new EdgeInsets.only(top: 20),
+          // ),
+          // TextFormField(
+          //   controller: zz2,
+          //   decoration: InputDecoration(
+          //       hintText: "Motorcycle",
+          //       labelText: "Motorcycle",
+          //       border: new OutlineInputBorder(
+          //           borderRadius: BorderRadius.circular(20))),
+          // ),
+          // new Padding(
+          //   padding: new EdgeInsets.only(top: 20),
+          // ),
+          // TextFormField(
+          //   controller: zz3,
+          //   maxLines: 4,
+          //   decoration: InputDecoration(
+          //       hintText: "Problems",
+          //       labelText: "Problems",
+          //       border: new OutlineInputBorder(
+          //           borderRadius: BorderRadius.circular(20))),
+          // ),
+          // new Padding(
+          //   padding: new EdgeInsets.only(top: 20),
+          // ),
+          // TextFormField(
+          //   controller: zz4,
+          //   maxLines: 1,
+          //   decoration: InputDecoration(
+          //       hintText: "(YYYY-MM-DD)",
+          //       labelText: "Service Date (YYYY-MM-DD)",
+          //       border: new OutlineInputBorder(
+          //           borderRadius: BorderRadius.circular(20))),
+          // ),
+          new Padding(
+            padding: new EdgeInsets.only(top: 20),
+          ),
           TextFormField(
-            controller: zz1,
+            controller: zz6,
             decoration: InputDecoration(
-                hintText: "Name",
-                labelText: "Name",
+                hintText: "Sparepart",
+                labelText: "Sparepart",
                 border: new OutlineInputBorder(
                     borderRadius: BorderRadius.circular(20))),
           ),
@@ -66,10 +124,10 @@ class _EditDatasState extends State<EditDatas> {
             padding: new EdgeInsets.only(top: 20),
           ),
           TextFormField(
-            controller: zz2,
+            controller: zz7,
             decoration: InputDecoration(
-                hintText: "Motorcycle",
-                labelText: "Motorcycle",
+                hintText: "Status Service",
+                labelText: "Status Service",
                 border: new OutlineInputBorder(
                     borderRadius: BorderRadius.circular(20))),
           ),
@@ -77,23 +135,10 @@ class _EditDatasState extends State<EditDatas> {
             padding: new EdgeInsets.only(top: 20),
           ),
           TextFormField(
-            controller: zz3,
-            maxLines: 4,
+            controller: zz8,
             decoration: InputDecoration(
-                hintText: "Problems",
-                labelText: "Problems",
-                border: new OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(20))),
-          ),
-          new Padding(
-            padding: new EdgeInsets.only(top: 20),
-          ),
-          TextFormField(
-            controller: zz4,
-            maxLines: 1,
-            decoration: InputDecoration(
-                hintText: "(YYYY-MM-DD)",
-                labelText: "Service Date (YYYY-MM-DD)",
+                hintText: "Cost",
+                labelText: "Cost",
                 border: new OutlineInputBorder(
                     borderRadius: BorderRadius.circular(20))),
           ),

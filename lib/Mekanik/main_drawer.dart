@@ -23,7 +23,7 @@ class MainDrawer extends StatelessWidget {
                 CircleAvatar(
                     radius: 50, backgroundImage: AssetImage('Person.jpg')),
                 SizedBox(height: 10),
-                Text('$usernames',
+                Text('$usernamess',
                     style: TextStyle(
                       fontSize: 22,
                       fontWeight: FontWeight.w800,
@@ -68,7 +68,7 @@ class MainDrawer extends StatelessWidget {
             title: Text('Service')),
         ListTile(
             onTap: () {
-              Navigator.pushReplacementNamed(context, 'mekanikchat-page');
+              Navigator.pushReplacementNamed(context, 'chat-page');
             },
             leading: Icon(
               Icons.chat_sharp,

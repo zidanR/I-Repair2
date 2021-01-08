@@ -23,12 +23,12 @@ class _EditDataState extends State<EditData> {
     var url = "http://bengkelirepair.masuk.id/flutter/editdataservice.php";
 
     http.post(url, body: {
-      "id": widget.list[widget.index]['id_servis'],
-      "zz1": zz1.text,
-      "zz2": zz2.text,
-      "zz3": zz3.text,
-      "zz4": zz4.text,
-      "zz5": zz5,
+      "txtid": widget.list[widget.index]['id_servis'],
+      "txtakun": zz1.text,
+      "txtjenis": zz2.text,
+      "txtkeluhan": zz3.text,
+      "txttgl": zz4.text,
+      "Rating": zz5,
     });
   }
 
@@ -103,7 +103,21 @@ class _EditDataState extends State<EditData> {
           new Padding(
             padding: new EdgeInsets.only(top: 20),
           ),
+          new Text(
+            "Cost : ${widget.list[widget.index]['total_biaya']}",
+            style: new TextStyle(fontSize: 18.0),
+          ),
+          new Padding(
+            padding: const EdgeInsets.only(top: 30.0),
+          ),
           SizedBox(height: 20),
+          new Text(
+            "RATING SERVICE",
+            style: new TextStyle(fontSize: 18.0),
+          ),
+          new Padding(
+            padding: new EdgeInsets.only(top: 20),
+          ),
           RatingBar.builder(
             initialRating: 0,
             minRating: 1,

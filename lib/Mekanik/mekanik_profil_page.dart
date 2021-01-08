@@ -12,6 +12,11 @@ class MekanikProfilPage extends StatefulWidget {
 
 class _MekanikProfilPageState extends State<MekanikProfilPage> {
   bool showPassword = false;
+  TextEditingController naama = new TextEditingController();
+  TextEditingController ussernamee = new TextEditingController();
+  TextEditingController emmails = new TextEditingController();
+  TextEditingController pasworlds = new TextEditingController();
+  TextEditingController adresss = new TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -81,11 +86,11 @@ class _MekanikProfilPageState extends State<MekanikProfilPage> {
               SizedBox(
                 height: 35,
               ),
-              buildTextField("Name", "Zulfikar Rofi", false),
-              buildTextField("User Name", "$usernames", false),
-              buildTextField("E-mail", "$usernames@gmail.com", false),
-              buildTextField("Password", "12345678", true),
-              buildTextField("Addres", "Spanjang Sidoarjo", false),
+              buildTextField("Name", "", false),
+              buildTextField("User Name", "$usernamess", false),
+              buildTextField("E-mail", "$usernamess@gmail.com", false),
+              buildTextField("Password", "", true),
+              buildTextField("Addres", "", false),
               SizedBox(
                 height: 35,
               ),

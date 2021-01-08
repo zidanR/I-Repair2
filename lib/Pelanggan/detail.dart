@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/home_page.dart';
+// import 'package:flutter_app/home_page.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:http/http.dart' as http;
 import 'editdata.dart';
@@ -33,9 +34,13 @@ class _DetailState extends State<Detail> {
           color: Colors.red,
           onPressed: () {
             deleteData();
-            Navigator.of(context).push(new MaterialPageRoute(
-              builder: (BuildContext context) => new HomePage(),
-            ));
+            Navigator.pushAndRemoveUntil(
+                context,
+                MaterialPageRoute(builder: (_) => HomePage()),
+                (route) => false);
+            // Navigator.of(context).pushReplacement(new MaterialPageRoute(
+            //   builder: (BuildContext context) => new HomePage(),
+            // ));
           },
         ),
         Padding(
@@ -60,14 +65,15 @@ class _DetailState extends State<Detail> {
       appBar: new AppBar(
           backgroundColor: Colors.orange, title: new Text("Detail Service")),
       body: new Container(
-        height: 500.0,
+        height: 1000.0,
         padding: const EdgeInsets.all(20.0),
         child: new Card(
           child: new Center(
             child: new Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 new Padding(
-                  padding: const EdgeInsets.only(top: 30.0),
+                  padding: const EdgeInsets.only(top: 10.0),
                 ),
                 new Text(
                   widget.list[widget.index]['nama_akun'],
@@ -91,7 +97,28 @@ class _DetailState extends State<Detail> {
                   padding: new EdgeInsets.only(top: 20),
                 ),
                 new Text(
+                  "Sparepart Changes : ${widget.list[widget.index]['pergantian_sparepart']}",
+                  style: new TextStyle(fontSize: 18.0),
+                ),
+                new Padding(
+                  padding: new EdgeInsets.only(top: 20),
+                ),
+                new Text(
                   "Date : ${widget.list[widget.index]['tanggal']}",
+                  style: new TextStyle(fontSize: 18.0),
+                ),
+                new Padding(
+                  padding: new EdgeInsets.only(top: 20),
+                ),
+                new Text(
+                  "Service Status : ${widget.list[widget.index]['status_mekanik']}",
+                  style: new TextStyle(fontSize: 18.0),
+                ),
+                new Padding(
+                  padding: new EdgeInsets.only(top: 20),
+                ),
+                new Text(
+                  "Cost : ${widget.list[widget.index]['total_biaya']}",
                   style: new TextStyle(fontSize: 18.0),
                 ),
                 new Padding(
@@ -115,7 +142,7 @@ class _DetailState extends State<Detail> {
                     mainAxisSize: MainAxisSize.min,
                     children: <Widget>[
                       new RaisedButton(
-                        child: new Text("EDIT"),
+                        child: new Text("PAYMENT"),
                         color: Colors.green,
                         onPressed: () => Navigator.of(context)
                             .pushReplacement(new MaterialPageRoute(
@@ -126,10 +153,18 @@ class _DetailState extends State<Detail> {
                         )),
                       ),
                       new RaisedButton(
-                        child: new Text("DELETE"),
+                        child: new Text("CENCEL ORDER"),
                         color: Colors.red,
                         onPressed: () => confirm(),
                       ),
+                    ],
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 0),
+                  child: new Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: <Widget>[
                       OutlineButton(
                         padding: EdgeInsets.symmetric(horizontal: 20),
                         shape: RoundedRectangleBorder(
@@ -137,7 +172,7 @@ class _DetailState extends State<Detail> {
                         onPressed: () {
                           Navigator.pushReplacementNamed(context, 'home-page');
                         },
-                        child: Text("Cencel",
+                        child: Text("Back",
                             style: TextStyle(
                                 fontSize: 14,
                                 letterSpacing: 0,
