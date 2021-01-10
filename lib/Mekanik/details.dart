@@ -17,7 +17,7 @@ class Details extends StatefulWidget {
 class _DetailsState extends State<Details> {
   void deleteData() {
     var url = "http://bengkelirepair.masuk.id/flutter/hapusdataservice.php";
-    http.post(url, body: {'id': widget.list[widget.index]['id_servis']});
+    http.post(url, body: {'id': widget.list[widget.index]['kode_pesanan']});
   }
 
   void confirm() {
@@ -60,109 +60,154 @@ class _DetailsState extends State<Details> {
       appBar: new AppBar(
           backgroundColor: Colors.red,
           title: new Text("Detail Service Customer")),
-      body: new Container(
-        height: 1200.0,
+      body: ListView(
+        // height: 1500.0,
         padding: const EdgeInsets.all(20.0),
-        child: new Card(
-          child: new Center(
-            child: new Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                new Padding(
-                  padding: const EdgeInsets.only(top: 30.0),
-                ),
-                new Text(
-                  widget.list[widget.index]['nama_akun'],
-                  style: new TextStyle(fontSize: 20.0),
-                ),
-                new Padding(padding: new EdgeInsets.only(top: 20)),
-                new Text(
-                  "Motorcycle : ${widget.list[widget.index]['jenis_motor']}",
-                  style: new TextStyle(fontSize: 18.0),
-                ),
-                new Padding(padding: new EdgeInsets.only(top: 20)),
-                new Text(
-                  "Problems : ${widget.list[widget.index]['keluhan']}",
-                  style: new TextStyle(fontSize: 18.0),
-                ),
-                new Padding(padding: new EdgeInsets.only(top: 20)),
-                new Text(
-                  "Sparepart Changes : ${widget.list[widget.index]['pergantian_sparepart']}",
-                  style: new TextStyle(fontSize: 18.0),
-                ),
-                new Padding(
-                  padding: new EdgeInsets.only(top: 20),
-                ),
-                new Text(
-                  "Date : ${widget.list[widget.index]['tanggal']}",
-                  style: new TextStyle(fontSize: 18.0),
-                ),
-                new Padding(
-                  padding: new EdgeInsets.only(top: 20),
-                ),
-                new Text(
-                  "Service Status : ${widget.list[widget.index]['status_mekanik']}",
-                  style: new TextStyle(fontSize: 18.0),
-                ),
-                new Padding(
-                  padding: new EdgeInsets.only(top: 20),
-                ),
-                new Text(
-                  "Cost : ${widget.list[widget.index]['total_biaya']}",
-                  style: new TextStyle(fontSize: 18.0),
-                ),
-                new Padding(
-                  padding: new EdgeInsets.only(top: 20),
-                ),
-                RatingBarIndicator(
-                  rating: double.parse(
-                      widget.list[widget.index]['Rating'].toString()),
-                  itemBuilder: (context, index) => Icon(
-                    Icons.star,
-                    color: Colors.amber,
-                  ),
-                  itemCount: 5,
-                  itemSize: 20.0,
-                  direction: Axis.horizontal,
-                ),
-                new Padding(padding: new EdgeInsets.only(top: 20)),
-                new Padding(
-                  padding: const EdgeInsets.only(top: 30.0),
-                ),
-                new Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: <Widget>[
-                    new RaisedButton(
-                      child: new Text("EDIT"),
-                      color: Colors.green,
-                      onPressed: () => Navigator.of(context)
-                          .pushReplacement(new MaterialPageRoute(
-                        builder: (BuildContext context) => new EditDatas(
-                          list: widget.list,
-                          index: widget.index,
-                        ),
-                      )),
-                    ),
-                    new RaisedButton(
-                      child: new Text("DELETE"),
-                      color: Colors.red,
-                      onPressed: () => confirm(),
-                    ),
-                    new RaisedButton(
-                      child: new Text("BACK"),
-                      color: Colors.white,
-                      onPressed: () {
-                        Navigator.pushReplacementNamed(
-                            context, 'mekanikservice-page');
-                      },
-                    ),
-                  ],
-                )
-              ],
-            ),
+        // child: new Card(
+        //   child: new Center(
+        //     child: new Column(
+        //       crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          new Padding(padding: new EdgeInsets.only(top: 20)),
+          new Text(
+            "Kode Pesanan : ${widget.list[widget.index]['kode_pesanan']}",
+            style: new TextStyle(fontSize: 18.0),
           ),
-        ),
+          new Padding(
+            padding: const EdgeInsets.only(top: 30.0),
+          ),
+          new Text(
+            widget.list[widget.index]['nama_akun'],
+            style: new TextStyle(fontSize: 20.0),
+          ),
+          new Padding(padding: new EdgeInsets.only(top: 20)),
+          new Text(
+            "Motorcycle : ${widget.list[widget.index]['jenis_motor']}",
+            style: new TextStyle(fontSize: 18.0),
+          ),
+          new Padding(padding: new EdgeInsets.only(top: 20)),
+          new Text(
+            "Problems : ${widget.list[widget.index]['keluhan']}",
+            style: new TextStyle(fontSize: 18.0),
+          ),
+          new Padding(padding: new EdgeInsets.only(top: 20)),
+          new Text(
+            "Sparepart Changes : ${widget.list[widget.index]['pergantian_sparepart']}",
+            style: new TextStyle(fontSize: 18.0),
+          ),
+          new Padding(
+            padding: new EdgeInsets.only(top: 20),
+          ),
+          new Text(
+            "Date : ${widget.list[widget.index]['tanggal']}",
+            style: new TextStyle(fontSize: 18.0),
+          ),
+          new Padding(
+            padding: new EdgeInsets.only(top: 20),
+          ),
+          new Text(
+            "Service at : ${widget.list[widget.index]['jam']}",
+            style: new TextStyle(fontSize: 18.0),
+          ),
+          new Padding(
+            padding: new EdgeInsets.only(top: 20),
+          ),
+          new Text(
+            "Mechanic : ${widget.list[widget.index]['nama_mekanik']}",
+            style: new TextStyle(fontSize: 18.0),
+          ),
+          new Padding(
+            padding: new EdgeInsets.only(top: 20),
+          ),
+          new Text(
+            "Admin Confirmed",
+            style: new TextStyle(fontSize: 18.0),
+          ),
+          new Text(
+            "1         = confirmed ",
+            style: new TextStyle(fontSize: 18.0),
+          ),
+          new Text(
+            "null/0 = not confirmed",
+            style: new TextStyle(fontSize: 18.0),
+          ),
+          new Padding(
+            padding: new EdgeInsets.only(top: 20),
+          ),
+          new Text(
+            "Admin Confirmed: ${widget.list[widget.index]['vehicle_status']}",
+            style: new TextStyle(fontSize: 18.0),
+          ),
+          new Padding(
+            padding: new EdgeInsets.only(top: 20),
+          ),
+          new Text(
+            "Vehicle Status : ${widget.list[widget.index]['status_mekanik']}",
+            style: new TextStyle(fontSize: 18.0),
+          ),
+          new Padding(
+            padding: new EdgeInsets.only(top: 20),
+          ),
+          new Text(
+            "Cost : Rp. ${widget.list[widget.index]['total_biaya']}",
+            style: new TextStyle(fontSize: 18.0),
+          ),
+          new Padding(
+            padding: new EdgeInsets.only(top: 20),
+          ),
+          new Text(
+            "Rating",
+            style: new TextStyle(fontSize: 18.0),
+          ),
+          RatingBarIndicator(
+            rating:
+                double.parse(widget.list[widget.index]['Rating'].toString()),
+            itemBuilder: (context, index) => Icon(
+              Icons.star,
+              color: Colors.amber,
+            ),
+            itemCount: 5,
+            itemSize: 20.0,
+            direction: Axis.horizontal,
+          ),
+          new Padding(padding: new EdgeInsets.only(top: 20)),
+          new Padding(
+            padding: const EdgeInsets.only(top: 30.0),
+          ),
+          new Row(
+            mainAxisSize: MainAxisSize.min,
+            children: <Widget>[
+              new RaisedButton(
+                child: new Text("EDIT"),
+                color: Colors.green,
+                onPressed: () =>
+                    Navigator.of(context).pushReplacement(new MaterialPageRoute(
+                  builder: (BuildContext context) => new EditDatas(
+                    list: widget.list,
+                    index: widget.index,
+                  ),
+                )),
+              ),
+              new RaisedButton(
+                child: new Text("DELETE"),
+                color: Colors.red,
+                onPressed: () => confirm(),
+              ),
+              new RaisedButton(
+                child: new Text("BACK"),
+                color: Colors.white,
+                onPressed: () {
+                  Navigator.pushReplacementNamed(
+                      context, 'mekanikservice-page');
+                },
+              ),
+            ],
+          )
+        ],
       ),
     );
+    //     ),
+    //   ),
+    // );
   }
 }

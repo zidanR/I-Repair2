@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:http/http.dart' as http;
+import 'package:shared_preferences/shared_preferences.dart';
 
 class DaftarServicePage extends StatefulWidget {
   DaftarServicePage({Key key}) : super(key: key);
@@ -15,18 +16,34 @@ class _DaftarServicePageState extends State<DaftarServicePage> {
   TextEditingController zz2 = new TextEditingController();
   TextEditingController zz3 = new TextEditingController();
   TextEditingController zz4 = new TextEditingController();
-  TextEditingController controlleralamat = new TextEditingController();
+  TextEditingController zzZack = new TextEditingController();
   TextEditingController controllertelepon = new TextEditingController();
+  String idPengguna;
+
+  void _takePrefs() async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    setState(() {
+      idPengguna = prefs.getString('idpengguna');
+    });
+  }
 
   void addData() {
     var url =
         "http://bengkelirepair.masuk.id/flutter/daftarservicepengguna.php";
     http.post(url, body: {
+      "txtid": idPengguna,
       "txtakun": zz1.text,
       "txtjenis": zz2.text,
       "txtkeluhan": zz3.text,
       "txttgl": zz4.text,
+      "txtjam": zzZack.text,
     });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _takePrefs();
   }
 
   @override
@@ -57,8 +74,8 @@ class _DaftarServicePageState extends State<DaftarServicePage> {
           TextFormField(
             controller: zz2,
             decoration: InputDecoration(
-                hintText: "Motorcycle",
-                labelText: "Motorcycle",
+                hintText: "Vehicle",
+                labelText: "Vehicle",
                 border: new OutlineInputBorder(
                     borderRadius: BorderRadius.circular(20))),
           ),
@@ -105,6 +122,18 @@ class _DaftarServicePageState extends State<DaftarServicePage> {
             decoration: InputDecoration(
                 hintText: "(YYYY-MM-DD)",
                 labelText: "Input Date (YYYY-MM-DD)",
+                border: new OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(20))),
+          ),
+          new Padding(
+            padding: new EdgeInsets.only(top: 20),
+          ),
+          TextFormField(
+            controller: zzZack,
+            maxLines: 1,
+            decoration: InputDecoration(
+                hintText: "(Ex: 13.50)",
+                labelText: "Input Service Time (08.00 - 15.00)",
                 border: new OutlineInputBorder(
                     borderRadius: BorderRadius.circular(20))),
           ),

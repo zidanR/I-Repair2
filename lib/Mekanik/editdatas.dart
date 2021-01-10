@@ -15,21 +15,25 @@ class _EditDatasState extends State<EditDatas> {
   // TextEditingController zz1;
   // TextEditingController zz2;
   // TextEditingController zz3;
-  // TextEditingController zz4;
+  TextEditingController zz4;
   TextEditingController zz6;
+  TextEditingController zz67;
   TextEditingController zz7;
   TextEditingController zz8;
 
   void editData() {
-    var url = "http://bengkelirepair.masuk.id/flutter/editdatasservice.php";
+    var url =
+        "http://bengkelirepair.masuk.id/flutter/editdataservicemekanik.php";
 
     http.post(url, body: {
-      "id": widget.list[widget.index]['id_servis'],
+      "id": widget.list[widget.index]['kode_pesanan'],
       // "zz1": zz1.text,
       // "zz2": zz2.text,
       // "zz3": zz3.text,
-      // "zz4": zz4.text,
+
       "txtsparepart": zz6.text,
+      "txtjam": zz4.text,
+      "txtmekanik": zz67.text,
       "status_mekanik": zz7.text,
       "total_biaya": zz8.text,
     });
@@ -45,7 +49,9 @@ class _EditDatasState extends State<EditDatas> {
     // zz3 = new TextEditingController(text: widget.list[widget.index]['keluhan']);
     zz6 = new TextEditingController(
         text: widget.list[widget.index]['pergantian_sparepart']);
-    // zz4 = new TextEditingController(text: widget.list[widget.index]['tanggal']);
+    zz67 = new TextEditingController(
+        text: widget.list[widget.index]['nama_mekanik']);
+    zz4 = new TextEditingController(text: widget.list[widget.index]['jam']);
     zz7 = new TextEditingController(
         text: widget.list[widget.index]['status_mekanik']);
     zz8 = new TextEditingController(
@@ -97,18 +103,31 @@ class _EditDatasState extends State<EditDatas> {
           //       border: new OutlineInputBorder(
           //           borderRadius: BorderRadius.circular(20))),
           // ),
-          // new Padding(
-          //   padding: new EdgeInsets.only(top: 20),
-          // ),
-          // TextFormField(
-          //   controller: zz4,
-          //   maxLines: 1,
-          //   decoration: InputDecoration(
-          //       hintText: "(YYYY-MM-DD)",
-          //       labelText: "Service Date (YYYY-MM-DD)",
-          //       border: new OutlineInputBorder(
-          //           borderRadius: BorderRadius.circular(20))),
-          // ),
+          //
+          new Padding(
+            padding: new EdgeInsets.only(top: 20),
+          ),
+          TextFormField(
+            controller: zz67,
+            decoration: InputDecoration(
+                hintText: "User Name",
+                labelText: "User Name",
+                border: new OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(20))),
+          ),
+          new Padding(
+            padding: new EdgeInsets.only(top: 20),
+          ),
+
+          TextFormField(
+            controller: zz4,
+            maxLines: 1,
+            decoration: InputDecoration(
+                hintText: "(Ex: 13.50)",
+                labelText: "Input Service Time (08.00 - 15.00)",
+                border: new OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(20))),
+          ),
           new Padding(
             padding: new EdgeInsets.only(top: 20),
           ),
@@ -144,6 +163,21 @@ class _EditDatasState extends State<EditDatas> {
           ),
           new Padding(
             padding: new EdgeInsets.only(top: 20),
+          ),
+          new Padding(
+            padding: new EdgeInsets.only(top: 20),
+          ),
+          ListTile(
+            title: Text(
+              'Sparepart',
+              style: TextStyle(fontWeight: FontWeight.w600, fontSize: 22.0),
+            ),
+            trailing: IconButton(
+              icon: Icon(Icons.keyboard_arrow_right),
+              onPressed: () {
+                Navigator.pushNamed(context, 'sparepart-page');
+              },
+            ),
           ),
           SizedBox(height: 50),
           Row(

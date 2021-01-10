@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_app/login_page.dart';
+import 'package:http/http.dart' as http;
+import 'package:shared_preferences/shared_preferences.dart';
+// import 'package:flutter_app/login_page.dart';
 
 class EditProfilPage extends StatefulWidget {
   EditProfilPage({Key key}) : super(key: key);
@@ -11,13 +13,54 @@ class EditProfilPage extends StatefulWidget {
 
 class _EditProfilPageState extends State<EditProfilPage> {
   bool showPassword = false;
-  TextEditingController naamaa = new TextEditingController();
-  TextEditingController ussername = new TextEditingController();
-  TextEditingController emmail = new TextEditingController();
-  TextEditingController pasworld = new TextEditingController();
-  TextEditingController adress = new TextEditingController();
+  TextEditingController m1;
+  TextEditingController m2;
+  TextEditingController m3;
+  TextEditingController m4;
+  TextEditingController m5;
+  TextEditingController m6;
+  String namaPengguna;
+  String usernamePengguna;
+  String passwordPengguna;
+  String emailPengguna;
+  String alamatPengguna;
+  String telpPengguna;
+  String idPengguna;
+
+  void _takePrefs() async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    setState(() {
+      idPengguna = prefs.getString('idpengguna');
+      m1 = new TextEditingController(text: prefs.getString('namaPengguna'));
+      m2 = new TextEditingController(text: prefs.getString('username'));
+      m3 = new TextEditingController(text: prefs.getString('passwords'));
+      m4 = new TextEditingController(text: prefs.getString('emailPengguna'));
+      m5 = new TextEditingController(text: prefs.getString('alamatPengguna'));
+      m6 = new TextEditingController(text: prefs.getString('telpPengguna'));
+    });
+  }
+
+  void editData() {
+    var url = "http://bengkelirepair.masuk.id/flutter/editprofilpengguna.php";
+
+    http.post(url, body: {
+      "txtid": idPengguna,
+      "txtnamapeng": m1.text,
+      "txtusernamepeng": m2.text,
+      "txtpasswords": m3.text,
+      "txtemail": m4.text,
+      "txtalamat": m5.text,
+      "txttelp": m6.text
+    });
+  }
 
   @override
+  @override
+  void initState() {
+    super.initState();
+    _takePrefs();
+  }
+
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -68,11 +111,69 @@ class _EditProfilPageState extends State<EditProfilPage> {
               SizedBox(
                 height: 35,
               ),
-              buildTextField("Name", "", false),
-              buildTextField("User Name", "$usernamesss", false),
-              buildTextField("E-mail", "$usernamesss@gmail.com", false),
-              buildTextField("Password", "", true),
-              buildTextField("Addres", "", false),
+              TextFormField(
+                controller: m1,
+                decoration: InputDecoration(
+                    hintText: "Name",
+                    labelText: "Name",
+                    border: new OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(20))),
+              ),
+              new Padding(
+                padding: new EdgeInsets.only(top: 20),
+              ),
+              TextFormField(
+                controller: m2,
+                decoration: InputDecoration(
+                    hintText: "User Name",
+                    labelText: "User Name",
+                    border: new OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(20))),
+              ),
+              new Padding(
+                padding: new EdgeInsets.only(top: 20),
+              ),
+              TextFormField(
+                controller: m3,
+                decoration: InputDecoration(
+                    hintText: "Password",
+                    labelText: "Password",
+                    border: new OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(20))),
+              ),
+              new Padding(
+                padding: new EdgeInsets.only(top: 20),
+              ),
+              TextFormField(
+                controller: m4,
+                decoration: InputDecoration(
+                    hintText: "Email",
+                    labelText: "Email",
+                    border: new OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(20))),
+              ),
+              new Padding(
+                padding: new EdgeInsets.only(top: 20),
+              ),
+              TextFormField(
+                controller: m5,
+                decoration: InputDecoration(
+                    hintText: "Addres",
+                    labelText: "Addres",
+                    border: new OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(20))),
+              ),
+              new Padding(
+                padding: new EdgeInsets.only(top: 20),
+              ),
+              TextFormField(
+                controller: m6,
+                decoration: InputDecoration(
+                    hintText: "Phone Number",
+                    labelText: "Phone Number",
+                    border: new OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(20))),
+              ),
               SizedBox(
                 height: 35,
               ),
@@ -94,6 +195,7 @@ class _EditProfilPageState extends State<EditProfilPage> {
                   ),
                   RaisedButton(
                     onPressed: () {
+                      editData();
                       Navigator.pushReplacementNamed(context, 'home-page');
                     },
                     color: Colors.green,
@@ -117,39 +219,4 @@ class _EditProfilPageState extends State<EditProfilPage> {
       ),
     );
   }
-
-  Widget buildTextField(
-      String labelText, String placeholder, bool isPasswordTextField) {
-    return Padding(
-      padding: const EdgeInsets.only(bottom: 35.0),
-      child: TextField(
-        obscureText: isPasswordTextField ? showPassword : false,
-        decoration: InputDecoration(
-            suffixIcon: isPasswordTextField
-                ? IconButton(
-                    onPressed: () {
-                      setState(() {
-                        showPassword = !showPassword;
-                      });
-                    },
-                    icon: Icon(
-                      Icons.remove_red_eye,
-                      color: Colors.grey,
-                    ),
-                  )
-                : null,
-            contentPadding: EdgeInsets.only(bottom: 3),
-            labelText: labelText,
-            floatingLabelBehavior: FloatingLabelBehavior.always,
-            hintText: placeholder,
-            hintStyle: TextStyle(
-              fontSize: 16,
-              fontWeight: FontWeight.bold,
-              color: Colors.black,
-            )),
-      ),
-    );
-  }
 }
-
-// class SettingsPage {}

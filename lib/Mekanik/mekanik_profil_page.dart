@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/Mekanik/main_drawer.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter_app/login_mekanik_page.dart';
+import 'package:http/http.dart' as http;
+import 'package:shared_preferences/shared_preferences.dart';
+// import 'package:flutter_app/login_mekanik_page.dart';
 
 class MekanikProfilPage extends StatefulWidget {
   MekanikProfilPage({Key key}) : super(key: key);
@@ -12,12 +14,54 @@ class MekanikProfilPage extends StatefulWidget {
 
 class _MekanikProfilPageState extends State<MekanikProfilPage> {
   bool showPassword = false;
-  TextEditingController naama = new TextEditingController();
-  TextEditingController ussernamee = new TextEditingController();
-  TextEditingController emmails = new TextEditingController();
-  TextEditingController pasworlds = new TextEditingController();
-  TextEditingController adresss = new TextEditingController();
+  TextEditingController m1;
+  TextEditingController m2;
+  TextEditingController m3;
+  // TextEditingController m4;
+  TextEditingController m5;
+  TextEditingController m6;
+
+  String namaMekanik;
+  String usernameMekanik;
+  String passwordMekanik;
+  // String emailMekanik;
+  String alamatMaekanik;
+  String telpMekanik;
+  String idMekanik;
+
+  void _takePrefs() async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    setState(() {
+      idMekanik = prefs.getString('iduser');
+      m1 = new TextEditingController(text: prefs.getString('namaMekanik'));
+      m2 = new TextEditingController(text: prefs.getString('usernameMekanik'));
+      m3 = new TextEditingController(text: prefs.getString('passwords'));
+      m5 = new TextEditingController(text: prefs.getString('alamatMekanik'));
+      m6 = new TextEditingController(text: prefs.getString('telpMekanik'));
+    });
+  }
+
+  void editData() {
+    var url = "http://bengkelirepair.masuk.id/flutter/editprofilmekanik.php";
+
+    http.post(url, body: {
+      "txtid": idMekanik,
+      "txtnamaakun": m1.text,
+      "txtusernames": m2.text,
+      "txtpasswords": m3.text,
+      // "txtemail": m4.text,
+      "txtalamat": m5.text,
+      "txttelepon": m6.text
+    });
+  }
+
   @override
+  @override
+  void initState() {
+    super.initState();
+    _takePrefs();
+  }
+
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text("Profil"), backgroundColor: Colors.red),
@@ -32,13 +76,6 @@ class _MekanikProfilPageState extends State<MekanikProfilPage> {
           },
           child: ListView(
             children: [
-              // Text(
-              //   "Profil",
-              //   style: TextStyle(fontSize: 25, fontWeight: FontWeight.w500),
-              // ),
-              // SizedBox(
-              //   height: 15,
-              // ),
               Center(
                 child: Stack(
                   children: [
@@ -61,36 +98,64 @@ class _MekanikProfilPageState extends State<MekanikProfilPage> {
                               fit: BoxFit.cover,
                               image: AssetImage('Person.jpg'))),
                     ),
-                    // Positioned(
-                    //     bottom: 0,
-                    //     right: 0,
-                    //     child: Container(
-                    //       height: 40,
-                    //       width: 40,
-                    //       decoration: BoxDecoration(
-                    //         shape: BoxShape.circle,
-                    //         border: Border.all(
-                    //           width: 4,
-                    //           color: Theme.of(context).scaffoldBackgroundColor,
-                    //         ),
-                    //         color: Colors.green,
-                    //       ),
-                    //       child: Icon(
-                    //         Icons.edit,
-                    //         color: Colors.white,
-                    //       ),
-                    //     )),
                   ],
                 ),
               ),
               SizedBox(
                 height: 35,
               ),
-              buildTextField("Name", "", false),
-              buildTextField("User Name", "$usernamess", false),
-              buildTextField("E-mail", "$usernamess@gmail.com", false),
-              buildTextField("Password", "", true),
-              buildTextField("Addres", "", false),
+              TextFormField(
+                controller: m1,
+                decoration: InputDecoration(
+                    hintText: "Name",
+                    labelText: "Name",
+                    border: new OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(20))),
+              ),
+              new Padding(
+                padding: new EdgeInsets.only(top: 20),
+              ),
+              TextFormField(
+                controller: m2,
+                decoration: InputDecoration(
+                    hintText: "User Name",
+                    labelText: "User Name",
+                    border: new OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(20))),
+              ),
+              new Padding(
+                padding: new EdgeInsets.only(top: 20),
+              ),
+              TextFormField(
+                controller: m5,
+                decoration: InputDecoration(
+                    hintText: "Addres",
+                    labelText: "Addres",
+                    border: new OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(20))),
+              ),
+              new Padding(
+                padding: new EdgeInsets.only(top: 20),
+              ),
+              TextFormField(
+                controller: m6,
+                decoration: InputDecoration(
+                    hintText: "Phone Number",
+                    labelText: "Phone Number",
+                    border: new OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(20))),
+              ),
+              new Padding(
+                padding: new EdgeInsets.only(top: 20),
+              ),
+              TextFormField(
+                controller: m3,
+                decoration: InputDecoration(
+                    hintText: "Enter New Password",
+                    labelText: "Enter New Password",
+                    border: new OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(20))),
+              ),
               SizedBox(
                 height: 35,
               ),
@@ -101,7 +166,10 @@ class _MekanikProfilPageState extends State<MekanikProfilPage> {
                     padding: EdgeInsets.symmetric(horizontal: 50),
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(20)),
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.pushReplacementNamed(
+                          context, 'mekanikhome-page');
+                    },
                     child: Text("CANCEL",
                         style: TextStyle(
                             fontSize: 14,
@@ -109,7 +177,11 @@ class _MekanikProfilPageState extends State<MekanikProfilPage> {
                             color: Colors.black)),
                   ),
                   RaisedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      editData();
+                      Navigator.pushReplacementNamed(
+                          context, 'mekanikhome-page');
+                    },
                     color: Colors.green,
                     padding: EdgeInsets.symmetric(horizontal: 50),
                     elevation: 2,
@@ -128,39 +200,6 @@ class _MekanikProfilPageState extends State<MekanikProfilPage> {
             ],
           ),
         ),
-      ),
-    );
-  }
-
-  Widget buildTextField(
-      String labelText, String placeholder, bool isPasswordTextField) {
-    return Padding(
-      padding: const EdgeInsets.only(bottom: 35.0),
-      child: TextField(
-        obscureText: isPasswordTextField ? showPassword : false,
-        decoration: InputDecoration(
-            suffixIcon: isPasswordTextField
-                ? IconButton(
-                    onPressed: () {
-                      setState(() {
-                        showPassword = !showPassword;
-                      });
-                    },
-                    icon: Icon(
-                      Icons.remove_red_eye,
-                      color: Colors.grey,
-                    ),
-                  )
-                : null,
-            contentPadding: EdgeInsets.only(bottom: 3),
-            labelText: labelText,
-            floatingLabelBehavior: FloatingLabelBehavior.always,
-            hintText: placeholder,
-            hintStyle: TextStyle(
-              fontSize: 16,
-              fontWeight: FontWeight.bold,
-              color: Colors.black,
-            )),
       ),
     );
   }

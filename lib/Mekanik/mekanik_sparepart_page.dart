@@ -59,7 +59,8 @@ class ItemList extends StatelessWidget {
                 child: new ListTile(
                   title: new Text(list[i]['nama_barang']),
                   leading: new Icon(Icons.handyman_sharp),
-                  subtitle: new Text("Stock : ${list[i]['stock_akhir']}"),
+                  subtitle: new Text(
+                      "Stock : ${list[i]['stock_akhir']} | Cost : Rp. ${list[i]['harga_sparepart']}"),
                 ),
               ),
             ),

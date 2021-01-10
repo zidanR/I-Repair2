@@ -40,6 +40,11 @@ class _LoginMekanikPageState extends State<LoginMekanikPage> {
       prefs.setString('usernames', datauser[0]['usernames']);
       prefs.setString('passwords', datauser[0]['passwords']);
       prefs.setString('level', datauser[0]['level']);
+      prefs.setString('namaMekanik', datauser[0]['nama_user']);
+      prefs.setString('usernameMekanik', datauser[0]['usernames']);
+      prefs.setString('alamatMekanik', datauser[0]['alamat']);
+      prefs.setString('telpMekanik', datauser[0]['nomor_telepon']);
+
       if (datauser[0]['level'] == '3') {
         SharedPreferences sharedPreferences =
             await SharedPreferences.getInstance();

@@ -51,10 +51,11 @@ class _MekanikServicePageState extends State<MekanikServicePage> {
                                 ))),
                     child: new Card(
                       child: new ListTile(
-                        title: new Text(snapshot.data[i]['nama_akun']),
+                        title: new Text(
+                            "${snapshot.data[i]['nama_akun']} / ${snapshot.data[i]['jenis_motor']}"),
                         leading: new Icon(Icons.person),
                         subtitle: new Text(
-                            "Motorcycle : ${snapshot.data[i]['jenis_motor']}"),
+                            "Vehicle Status: ${snapshot.data[i]['status_mekanik']}"),
                       ),
                     ),
                   ),

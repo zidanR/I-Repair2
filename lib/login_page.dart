@@ -39,15 +39,20 @@ class _LoginPageState extends State<LoginPage> {
       final SharedPreferences prefs = await SharedPreferences.getInstance();
       prefs.setString('idpengguna', datausers[0]['id_pengguna']);
       prefs.setString('username', datausers[0]['username_pengguna']);
-      prefs.setString('passwords', datausers[0]['password']);
+      prefs.setString('passwords', datausers[0]['passwords']);
       prefs.setString('level', datausers[0]['level']);
+      prefs.setString('namaPengguna', datausers[0]['nama_pengguna']);
+      prefs.setString('usernamePengguna', datausers[0]['username_pengguna']);
+      prefs.setString('emailPengguna', datausers[0]['email']);
+      prefs.setString('alamatPengguna', datausers[0]['alamat']);
+      prefs.setString('telpPengguna', datausers[0]['nomor_telepon']);
 
       if (datausers[0]['level'] == '0') {
         SharedPreferences sharedPreferences =
             await SharedPreferences.getInstance();
         idpengguna = sharedPreferences.getString('idpengguna');
         username = sharedPreferences.getString('username');
-        passwords = sharedPreferences.getString('password');
+        passwords = sharedPreferences.getString('passwords');
         level = sharedPreferences.getString('level');
         final result = (await FirebaseFirestore.instance
                 .collection('users')
